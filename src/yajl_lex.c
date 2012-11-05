@@ -255,10 +255,10 @@ static size_t
 yajl_string_scan(const unsigned char * buf, size_t len, int utf8check)
 {
     unsigned char mask = IJC|NFP|(utf8check ? NUC : 0);
-    const char *end = buf + len;
-    while (buf < end && !(charLookupTable[*buf] & mask))
+    const unsigned char *end = buf + len;
+    while ((buf < end) && !(charLookupTable[*buf] & mask))
     {
-        buf++;
+        ++buf;
     }
     return (len - (end - buf));
 }
